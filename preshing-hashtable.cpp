@@ -1,4 +1,4 @@
-#include "hashtable.h"
+#include "preshing-hashtable.h"
 #include "util.h"
 
 #include <assert.h>
@@ -11,9 +11,9 @@
 
 
 //----------------------------------------------
-//  HashTable::HashTable
+//  preshing::HashTable::HashTable
 //----------------------------------------------
-HashTable::HashTable(size_t initialSize)
+preshing::HashTable::HashTable(size_t initialSize)
 {
     // Initialize regular cells
     m_arraySize = initialSize;
@@ -29,18 +29,18 @@ HashTable::HashTable(size_t initialSize)
 }
 
 //----------------------------------------------
-//  HashTable::~HashTable
+//  preshing::HashTable::~HashTable
 //----------------------------------------------
-HashTable::~HashTable()
+preshing::HashTable::~HashTable()
 {
     // Delete regular cells
     delete[] m_cells;
 }
 
 //----------------------------------------------
-//  HashTable::Lookup
+//  preshing::HashTable::Lookup
 //----------------------------------------------
-HashTable::Cell* HashTable::Lookup(size_t key)
+preshing::HashTable::Cell* preshing::HashTable::Lookup(size_t key)
 {
     if (key)
     {
@@ -63,9 +63,9 @@ HashTable::Cell* HashTable::Lookup(size_t key)
 };
 
 //----------------------------------------------
-//  HashTable::Insert
+//  preshing::HashTable::Insert
 //----------------------------------------------
-HashTable::Cell* HashTable::Insert(size_t key)
+preshing::HashTable::Cell* preshing::HashTable::Insert(size_t key)
 {
     if (key)
     {
@@ -110,9 +110,9 @@ HashTable::Cell* HashTable::Insert(size_t key)
 }
 
 //----------------------------------------------
-//  HashTable::Delete
+//  preshing::HashTable::Delete
 //----------------------------------------------
-void HashTable::Delete(Cell* cell)
+void preshing::HashTable::Delete(Cell* cell)
 {
     if (cell != &m_zeroCell)
     {
@@ -152,9 +152,9 @@ void HashTable::Delete(Cell* cell)
 }
 
 //----------------------------------------------
-//  HashTable::Clear
+//  preshing::HashTable::Clear
 //----------------------------------------------
-void HashTable::Clear()
+void preshing::HashTable::Clear()
 {
     // (Does not resize the array)
     // Clear regular cells
@@ -166,17 +166,17 @@ void HashTable::Clear()
 }
 
 //----------------------------------------------
-//  HashTable::Compact
+//  preshing::HashTable::Compact
 //----------------------------------------------
-void HashTable::Compact()
+void preshing::HashTable::Compact()
 {
     Repopulate(upper_power_of_two((m_population * 4 + 3) / 3));
 }
 
 //----------------------------------------------
-//  HashTable::Repopulate
+//  preshing::HashTable::Repopulate
 //----------------------------------------------
-void HashTable::Repopulate(size_t desiredSize)
+void preshing::HashTable::Repopulate(size_t desiredSize)
 {
     assert((desiredSize & (desiredSize - 1)) == 0);   // Must be a power of 2
     assert(m_population * 4  <= desiredSize * 3);
@@ -215,7 +215,7 @@ void HashTable::Repopulate(size_t desiredSize)
 //----------------------------------------------
 //  Iterator::Iterator
 //----------------------------------------------
-HashTable::Iterator::Iterator(HashTable &table) : m_table(table)
+preshing::HashTable::Iterator::Iterator(HashTable &table) : m_table(table)
 {
     m_cur = &m_table.m_zeroCell;
     if (!m_table.m_zeroUsed)
@@ -225,7 +225,7 @@ HashTable::Iterator::Iterator(HashTable &table) : m_table(table)
 //----------------------------------------------
 //  Iterator::Next
 //----------------------------------------------
-HashTable::Cell* HashTable::Iterator::Next()
+preshing::HashTable::Cell* preshing::HashTable::Iterator::Next()
 {
     // Already finished?
     if (!m_cur)
