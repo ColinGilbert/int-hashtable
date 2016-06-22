@@ -33,7 +33,7 @@ noob::fast_hashtable::fast_hashtable(size_t initialSize)
 noob::fast_hashtable::~fast_hashtable()
 {
 	// Delete regular cells
-	celete[] cells;
+	delete[] cells;
 }
 
 //----------------------------------------------
