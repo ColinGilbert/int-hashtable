@@ -129,7 +129,7 @@ void noob::fast_hashtable::del(cell* cell)
 		assert(cell->key);
 
 		// Remove this cell by shuffling neighboring cells so there are no gaps in anyone's probe chain
-		for (cell* neighbor = CIRCULAR_NEXT(cell);; neighbor = CIRCULAR_NEXT(neighbor))
+		for (noob::fast_hashtable::cell* neighbor = CIRCULAR_NEXT(cell);; neighbor = CIRCULAR_NEXT(neighbor))
 		{
 			if (!neighbor->key)
 			{
@@ -139,7 +139,7 @@ void noob::fast_hashtable::del(cell* cell)
 				population--;
 				return;
 			}
-			cell* ideal = FIRST_CELL(integer_hash(neighbor->key));
+			noob::fast_hashtable::cell* ideal = FIRST_CELL(integer_hash(neighbor->key));
 			if (CIRCULAR_OFFSET(ideal, cell) < CIRCULAR_OFFSET(ideal, neighbor))
 			{
 				// Swap with neighbor, then make neighbor the new cell to remove.
