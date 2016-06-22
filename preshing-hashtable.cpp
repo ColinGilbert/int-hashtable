@@ -1,5 +1,5 @@
 #include "preshing-hashtable.h"
-#include "preshing_util.h"
+#include "preshing-util.h"
 
 #include <assert.h>
 #include <memory.h>
