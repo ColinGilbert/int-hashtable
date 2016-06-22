@@ -86,16 +86,16 @@ namespace noob
 			// Basic operations
 			cell* lookup(size_t key);
 			cell* insert(size_t key);
-			void delete(cell* cell);
+			void Delete(cell* cell);
 			void clear();
 			void compact();
 
-			void delete(size_t key)
+			void Delete(size_t key)
 			{
 				cell* value = lookup(key);
 				if (value)
 				{
-					delete(value);
+					Delete(value);
 				}
 			}
 

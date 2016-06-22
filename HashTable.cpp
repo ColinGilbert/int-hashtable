@@ -32,8 +32,8 @@ noob::hash_table::hash_table(size_t initialSize)
 //----------------------------------------------
 noob::hash_table::~hash_table()
 {
-	// delete regular cells
-	delete[] cells;
+	// Delete regular cells
+	celete[] cells;
 }
 
 //----------------------------------------------
@@ -109,13 +109,13 @@ noob::hash_table::cell* noob::hash_table::insert(size_t key)
 }
 
 //----------------------------------------------
-//  noob::hash_table::delete
+//  noob::hash_table::Delete
 //----------------------------------------------
-void noob::hash_table::delete(cell* cell)
+void noob::hash_table::Delete(cell* cell)
 {
 	if (cell != &cell_zero)
 	{
-		// delete from regular cells
+		// Delete from regular cells
 		assert(cell >= cells && cell - cells < array_size);
 		assert(cell->key);
 
@@ -141,7 +141,7 @@ void noob::hash_table::delete(cell* cell)
 	}
 	else
 	{
-		// delete zero cell
+		// Delete zero cell
 		assert(zero_used);
 		zero_used = false;
 		cell->value = 0;
@@ -207,7 +207,7 @@ void noob::hash_table::repopulate(size_t desiredSize)
 		}
 	}
 
-	// delete old array
+	// Delete old array
 	delete[] oldcells;
 }
 
