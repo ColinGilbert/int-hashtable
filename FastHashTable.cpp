@@ -111,8 +111,14 @@ noob::fast_hashtable::cell* noob::fast_hashtable::insert(size_t key)
 
 bool noob::fast_hashtable::is_valid(const cell* c)
 {
-	if (c == &cell_zero) return false;
-	return true;
+	if (c->key == cell_zero.key && c->value == cell_zero.value)
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
 }
 
 
