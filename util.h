@@ -1,10 +1,6 @@
 #pragma once
 
-
-#define NULL 0
-
-typedef unsigned int uint32_t;
-typedef unsigned long long uint64_t;
+#include <cstdint>
 
 inline uint32_t upper_power_of_two(uint32_t v)
 {
