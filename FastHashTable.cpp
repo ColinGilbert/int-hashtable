@@ -108,6 +108,15 @@ noob::fast_hashtable::cell* noob::fast_hashtable::insert(size_t key)
 	}
 }
 
+
+bool noob::fast_hashtable::is_valid(const cell* c)
+{
+	if (c == &cell_zero) return false;
+	return true;
+}
+
+
+
 //----------------------------------------------
 //  noob::fast_hashtable::Delete
 //----------------------------------------------

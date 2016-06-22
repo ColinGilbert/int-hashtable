@@ -86,10 +86,11 @@ namespace noob
 			// Basic operations
 			cell* lookup(size_t key);
 			cell* insert(size_t key);
+			bool is_valid(const cell*);
 			void Delete(cell* cell);
 			void clear();
 			void compact();
-
+			
 			void Delete(size_t key)
 			{
 				cell* value = lookup(key);
