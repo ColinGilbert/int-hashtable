@@ -32,7 +32,7 @@ noob::fast_hashtable::fast_hashtable(size_t initialSize)
 //----------------------------------------------
 noob::fast_hashtable::~fast_hashtable()
 {
-	// Delete regular cells
+	// del regular cells
 	delete[] cells;
 }
 
@@ -118,13 +118,13 @@ bool noob::fast_hashtable::is_valid(const cell* c)
 
 
 //----------------------------------------------
-//  noob::fast_hashtable::Delete
+//  noob::fast_hashtable::del
 //----------------------------------------------
-void noob::fast_hashtable::Delete(cell* cell)
+void noob::fast_hashtable::del(cell* cell)
 {
 	if (cell != &cell_zero)
 	{
-		// Delete from regular cells
+		// del from regular cells
 		assert(cell >= cells && cell - cells < array_size);
 		assert(cell->key);
 
@@ -150,7 +150,7 @@ void noob::fast_hashtable::Delete(cell* cell)
 	}
 	else
 	{
-		// Delete zero cell
+		// del zero cell
 		assert(zero_used);
 		zero_used = false;
 		cell->value = 0;
@@ -216,9 +216,23 @@ void noob::fast_hashtable::repopulate(size_t desiredSize)
 		}
 	}
 
-	// Delete old array
+	// del old array
 	delete[] oldcells;
 }
+
+
+void noob::fast_hashtable::del(size_t key)
+{
+
+	{
+		cell* value = lookup(key);
+		if (value)
+		{
+			del(value);
+		}
+	}
+}
+
 
 //----------------------------------------------
 //  iterator::iterator

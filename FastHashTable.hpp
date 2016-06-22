@@ -87,18 +87,10 @@ namespace noob
 			cell* lookup(size_t key);
 			cell* insert(size_t key);
 			bool is_valid(const cell*);
-			void Delete(cell* cell);
+			void del(cell* cell);
+			void del(size_t key);
 			void clear();
 			void compact();
-			
-			void Delete(size_t key)
-			{
-				cell* value = lookup(key);
-				if (value)
-				{
-					Delete(value);
-				}
-			}
 
 			//----------------------------------------------
 			//  iterator
