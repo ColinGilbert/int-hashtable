@@ -1,4 +1,4 @@
-#include "HashTable.hpp"
+#include "FastHashTable.hpp"
 
 #include <assert.h>
 #include <memory.h>
@@ -10,9 +10,9 @@
 
 
 //----------------------------------------------
-//  noob::hash_table::hash_table
+//  noob::fast_hashtable::fast_hashtable
 //----------------------------------------------
-noob::hash_table::hash_table(size_t initialSize)
+noob::fast_hashtable::fast_hashtable(size_t initialSize)
 {
 	// Initialize regular cells
 	array_size = initialSize;
@@ -28,18 +28,18 @@ noob::hash_table::hash_table(size_t initialSize)
 }
 
 //----------------------------------------------
-//  noob::hash_table::~hash_table
+//  noob::fast_hashtable::~fast_hashtable
 //----------------------------------------------
-noob::hash_table::~hash_table()
+noob::fast_hashtable::~fast_hashtable()
 {
 	// Delete regular cells
 	celete[] cells;
 }
 
 //----------------------------------------------
-//  noob::hash_table::lookup
+//  noob::fast_hashtable::lookup
 //----------------------------------------------
-noob::hash_table::cell* noob::hash_table::lookup(size_t key)
+noob::fast_hashtable::cell* noob::fast_hashtable::lookup(size_t key)
 {
 	if (key)
 	{
@@ -62,9 +62,9 @@ noob::hash_table::cell* noob::hash_table::lookup(size_t key)
 };
 
 //----------------------------------------------
-//  noob::hash_table::insert
+//  noob::fast_hashtable::insert
 //----------------------------------------------
-noob::hash_table::cell* noob::hash_table::insert(size_t key)
+noob::fast_hashtable::cell* noob::fast_hashtable::insert(size_t key)
 {
 	if (key)
 	{
@@ -109,9 +109,9 @@ noob::hash_table::cell* noob::hash_table::insert(size_t key)
 }
 
 //----------------------------------------------
-//  noob::hash_table::Delete
+//  noob::fast_hashtable::Delete
 //----------------------------------------------
-void noob::hash_table::Delete(cell* cell)
+void noob::fast_hashtable::Delete(cell* cell)
 {
 	if (cell != &cell_zero)
 	{
@@ -151,9 +151,9 @@ void noob::hash_table::Delete(cell* cell)
 }
 
 //----------------------------------------------
-//  noob::hash_table::clear
+//  noob::fast_hashtable::clear
 //----------------------------------------------
-void noob::hash_table::clear()
+void noob::fast_hashtable::clear()
 {
 	// (Does not resize the array)
 	// clear regular cells
@@ -165,17 +165,17 @@ void noob::hash_table::clear()
 }
 
 //----------------------------------------------
-//  noob::hash_table::compact
+//  noob::fast_hashtable::compact
 //----------------------------------------------
-void noob::hash_table::compact()
+void noob::fast_hashtable::compact()
 {
 	repopulate(upper_power_of_two((population * 4 + 3) / 3));
 }
 
 //----------------------------------------------
-//  noob::hash_table::repopulate
+//  noob::fast_hashtable::repopulate
 //----------------------------------------------
-void noob::hash_table::repopulate(size_t desiredSize)
+void noob::fast_hashtable::repopulate(size_t desiredSize)
 {
 	assert((desiredSize & (desiredSize - 1)) == 0);   // Must be a power of 2
 	assert(population * 4  <= desiredSize * 3);
@@ -214,7 +214,7 @@ void noob::hash_table::repopulate(size_t desiredSize)
 //----------------------------------------------
 //  iterator::iterator
 //----------------------------------------------
-noob::hash_table::iterator::iterator(hash_table &table) : table(table)
+noob::fast_hashtable::iterator::iterator(fast_hashtable &table) : table(table)
 {
 	current = &table.cell_zero;
 	if (!table.zero_used)
@@ -224,7 +224,7 @@ noob::hash_table::iterator::iterator(hash_table &table) : table(table)
 //----------------------------------------------
 //  iterator::next
 //----------------------------------------------
-noob::hash_table::cell* noob::hash_table::iterator::next()
+noob::fast_hashtable::cell* noob::fast_hashtable::iterator::next()
 {
 	// Already finished?
 	if (!current)

@@ -3,7 +3,7 @@
 #include <cstddef>
 
 //----------------------------------------------
-//  hash_table
+//  fast_hashtable
 //
 //  Maps pointer-sized integers to pointer-sized integers.
 //  Uses open addressing with linear probing.
@@ -61,7 +61,7 @@ namespace noob
 		return k;
 	}
 
-	class hash_table
+	class fast_hashtable
 	{
 		public:
 			struct cell
@@ -80,8 +80,8 @@ namespace noob
 			void repopulate(size_t desiredSize);
 
 		public:
-			hash_table(size_t initialSize = 8);
-			~hash_table();
+			fast_hashtable(size_t initialSize = 8);
+			~fast_hashtable();
 
 			// Basic operations
 			cell* lookup(size_t key);
@@ -106,11 +106,11 @@ namespace noob
 			class iterator
 			{
 				private:
-					hash_table& table;
+					fast_hashtable& table;
 					cell* current;
 
 				public:
-					iterator(hash_table &table);
+					iterator(fast_hashtable &table);
 					cell* next();
 					inline cell* operator*() const { return current; }
 					inline cell* operator->() const { return current; }
