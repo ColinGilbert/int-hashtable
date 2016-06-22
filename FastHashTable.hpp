@@ -1,6 +1,6 @@
 #pragma once
 
-#include <cstddef>
+#include <stdint.h>
 
 //----------------------------------------------
 //  fast_hashtable
